@@ -31,6 +31,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'isAdmin',
     ];
 
     /**
@@ -46,4 +47,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class,'user_id','id');
     }
+
+
 }

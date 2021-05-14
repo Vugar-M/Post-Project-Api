@@ -15,6 +15,7 @@ class AuthController extends Controller
         $user->email=$request->input('email');
         $user->name=$request->input('name');
         $user->password=Hash::make($request->input('password'));
+        $user->isAdmin=$request->input('isAdmin');
         $user->save();
 
         $token=$user->createToken('post-token')->plainTextToken;
