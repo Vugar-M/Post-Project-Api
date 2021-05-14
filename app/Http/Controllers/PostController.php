@@ -14,9 +14,9 @@ class PostController extends Controller
         return PostResource::collection($posts);
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
-        $post=Post::find($id);
+        $this->authorize('view-post',$post);
         return new PostResource($post);
     }
 
