@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/post',[\App\Http\Controllers\PostController::class,'index']);
 Route::get('/post/{post}',[\App\Http\Controllers\PostController::class,'show'])->middleware('auth:sanctum');
-Route::post('/post',[\App\Http\Controllers\PostController::class,'store'])->middleware('auth:sanctum');
+Route::post('/post',[\App\Http\Controllers\PostController::class,'store']);
 Route::put('/post/{id}',[\App\Http\Controllers\PostController::class,'update']);
 Route::delete('/post{id}',[\App\Http\Controllers\PostController::class,'destroy']);
 Route::get('/post/search/{data}',[\App\Http\Controllers\PostController::class,'search']);
