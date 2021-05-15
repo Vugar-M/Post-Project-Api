@@ -17,10 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/post',[\App\Http\Controllers\PostController::class,'index']);
-Route::get('/post/{post}',[\App\Http\Controllers\PostController::class,'show'])->middleware('auth:sanctum');
-Route::post('/post',[\App\Http\Controllers\PostController::class,'store']);
-Route::put('/post/{id}',[\App\Http\Controllers\PostController::class,'update']);
-Route::delete('/post{id}',[\App\Http\Controllers\PostController::class,'destroy']);
-Route::get('/post/search/{data}',[\App\Http\Controllers\PostController::class,'search']);
+Route::prefix('/post')->group(function (){
+    Route::get('/',[\App\Http\Controllers\PostController::class,'index']);
+    Route::get('/{post}',[\App\Http\Controllers\PostController::class,'show'])->middleware('auth:sanctum');
+    Route::post('/',[\App\Http\Controllers\PostController::class,'store']);
+    Route::put('/{id}',[\App\Http\Controllers\PostController::class,'update']);
+    Route::delete('/{id}',[\App\Http\Controllers\PostController::class,'destroy']);
+    Route::get('/search/{data}',[\App\Http\Controllers\PostController::class,'search']);
+});
+
 Route::post('/register',[\App\Http\Controllers\AuthController::class,'register']);
